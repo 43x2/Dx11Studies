@@ -1,0 +1,17 @@
+
+// ピクセルシェーダ
+// Debug:   fxc /E ps_main /T ps_5_0 /Fh src/constant.ps.h /Od /Vn g_ps_constant /Zi ../000/shaders/001_constant/constant.ps
+// Release: fxc /E ps_main /T ps_5_0 /Fh src/constant.ps.h /O1 /Vn g_ps_constant ../000/shaders/001_constant/constant.ps
+
+struct VS_OUT
+{
+	float4 position : SV_POSITION;
+	float4 color    : COLOR0;
+};
+
+
+float4 ps_main( VS_OUT PSin ) : SV_TARGET
+{
+	return PSin.color;
+}
+

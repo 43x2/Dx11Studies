@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "002_Window", "002_Window\Wi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "003_Dx11Init", "003_Dx11Init\Dx11Init_2008.vcproj", "{6BEE38C6-C1DB-4D7A-AB59-4B1E9980DA49}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "004_Dx11Polygon", "004_Dx11Polygon\Dx11Polygon_2008.vcproj", "{072A6E08-54AB-4F06-8AFF-760FDF206B13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -25,6 +27,10 @@ Global
 		{6BEE38C6-C1DB-4D7A-AB59-4B1E9980DA49}.Debug|Win32.Build.0 = Debug|Win32
 		{6BEE38C6-C1DB-4D7A-AB59-4B1E9980DA49}.Release|Win32.ActiveCfg = Release|Win32
 		{6BEE38C6-C1DB-4D7A-AB59-4B1E9980DA49}.Release|Win32.Build.0 = Release|Win32
+		{072A6E08-54AB-4F06-8AFF-760FDF206B13}.Debug|Win32.ActiveCfg = Debug|Win32
+		{072A6E08-54AB-4F06-8AFF-760FDF206B13}.Debug|Win32.Build.0 = Debug|Win32
+		{072A6E08-54AB-4F06-8AFF-760FDF206B13}.Release|Win32.ActiveCfg = Release|Win32
+		{072A6E08-54AB-4F06-8AFF-760FDF206B13}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
