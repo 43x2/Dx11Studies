@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "006_Dx11ConstantBuffer", "0
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "007_Dx11DeferredContext", "007_Dx11DeferredContext\Dx11DeferredContext_2008.vcproj", "{BF0CFCAF-ADDA-40C6-8A16-1398E277DD69}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "008_Dx11Perspective", "008_Dx11Perspective\Dx11Perspective_2008.vcproj", "{41E4EDAB-2A51-4D55-A4DD-0CCF7D1723EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -49,6 +51,10 @@ Global
 		{BF0CFCAF-ADDA-40C6-8A16-1398E277DD69}.Debug|Win32.Build.0 = Debug|Win32
 		{BF0CFCAF-ADDA-40C6-8A16-1398E277DD69}.Release|Win32.ActiveCfg = Release|Win32
 		{BF0CFCAF-ADDA-40C6-8A16-1398E277DD69}.Release|Win32.Build.0 = Release|Win32
+		{41E4EDAB-2A51-4D55-A4DD-0CCF7D1723EB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{41E4EDAB-2A51-4D55-A4DD-0CCF7D1723EB}.Debug|Win32.Build.0 = Debug|Win32
+		{41E4EDAB-2A51-4D55-A4DD-0CCF7D1723EB}.Release|Win32.ActiveCfg = Release|Win32
+		{41E4EDAB-2A51-4D55-A4DD-0CCF7D1723EB}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
