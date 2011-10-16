@@ -10,7 +10,7 @@
 #include <dtprintf.h>
 // Shaders
 #include "perspective.vs.h"   // 頂点シェーダ
-#include "constant.ps.h"   // ピクセルシェーダ
+#include "constant.ps.h"      // ピクセルシェーダ
 
 
 #define COM_SAFE_RELEASE( p ) { if(p) { (p)->Release(); (p) = NULL; } }
@@ -201,14 +201,14 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 	// 頂点データ
 	float vertices[ 8 ][ 7 ] = {
 	//    Xaxis  Yaxis  Zaxis  赤     緑     青     Alpha
-		{ -0.5f,  0.5f, -0.5f,  0.0f,  0.0f,  0.0f,  1.0f },   // 手前左上
-		{  0.5f,  0.5f, -0.5f,  0.0f,  0.0f,  1.0f,  1.0f },   // 手前右上
-		{  0.5f, -0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f },   // 手前右下
-		{ -0.5f, -0.5f, -0.5f,  0.0f,  1.0f,  1.0f,  1.0f },   // 手前左下
-		{ -0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f },   // 奥左上
-		{  0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  1.0f,  1.0f },   // 奥右上
-		{  0.5f, -0.5f,  0.5f,  1.0f,  1.0f,  0.0f,  1.0f },   // 奥右下
-		{ -0.5f, -0.5f,  0.5f,  1.0f,  1.0f,  1.0f,  1.0f }    // 奥左下
+		{ -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  0.0f,  1.0f },   // 手前左上
+		{  0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f },   // 手前右上
+		{  0.5f, -0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f },   // 手前右下
+		{ -0.5f, -0.5f,  0.5f,  0.0f,  1.0f,  1.0f,  1.0f },   // 手前左下
+		{ -0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f },   // 奥左上
+		{  0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  1.0f,  1.0f },   // 奥右上
+		{  0.5f, -0.5f, -0.5f,  1.0f,  1.0f,  0.0f,  1.0f },   // 奥右下
+		{ -0.5f, -0.5f, -0.5f,  1.0f,  1.0f,  1.0f,  1.0f }    // 奥左下
 	};
 	// 入力エレメント記述子
 	D3D11_INPUT_ELEMENT_DESC verticesDesc[] = {
@@ -411,12 +411,12 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 
 			D3DXMatrixIdentity( &world );
 
-			const D3DXVECTOR3 eye( 1.8f * 1.414214f * cosf( theta ), 1.8f, 1.8f * 1.414214f * sinf( theta ) );
+			const D3DXVECTOR3 eye( 1.8f * 1.414214f * -cosf( theta ), 1.8f, 1.8f * 1.414214f * sinf( theta ) );
 			const D3DXVECTOR3 at( 0.0f, 0.0f, 0.0f );
 			const D3DXVECTOR3 up( 0.0f, 1.0f, 0.0f );
-			D3DXMatrixLookAtLH( &view, &eye, &at, &up );
+			D3DXMatrixLookAtRH( &view, &eye, &at, &up );
 
-			D3DXMatrixPerspectiveFovLH( &projection, 3.141593f / 4.0f, 1280.0f / 720.0f, 1.0f, 10000.0f );
+			D3DXMatrixPerspectiveFovRH( &projection, 3.141593f / 4.0f, 1280.0f / 720.0f, 1.0f, 10000.0f );
 
 
 			// 頂点シェーダ用定数バッファへアクセス

@@ -10,7 +10,7 @@
 #include <dtprintf.h>
 // Shaders
 #include "perspective.vs.h"   // 頂点シェーダ
-#include "constant.ps.h"   // ピクセルシェーダ
+#include "constant.ps.h"      // ピクセルシェーダ
 
 
 #define COM_SAFE_RELEASE( p ) { if(p) { (p)->Release(); (p) = NULL; } }
@@ -239,14 +239,14 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 	// 頂点データ
 	float vertices[ 8 ][ 7 ] = {
 	//    Xaxis  Yaxis  Zaxis  赤     緑     青     Alpha
-		{ -0.5f,  0.5f, -0.5f,  0.0f,  0.0f,  0.0f,  1.0f },   // 手前左上
-		{  0.5f,  0.5f, -0.5f,  0.0f,  0.0f,  1.0f,  1.0f },   // 手前右上
-		{  0.5f, -0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f },   // 手前右下
-		{ -0.5f, -0.5f, -0.5f,  0.0f,  1.0f,  1.0f,  1.0f },   // 手前左下
-		{ -0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f },   // 奥左上
-		{  0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  1.0f,  1.0f },   // 奥右上
-		{  0.5f, -0.5f,  0.5f,  1.0f,  1.0f,  0.0f,  1.0f },   // 奥右下
-		{ -0.5f, -0.5f,  0.5f,  1.0f,  1.0f,  1.0f,  1.0f }    // 奥左下
+		{ -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  0.0f,  1.0f },   // 手前左上
+		{  0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f },   // 手前右上
+		{  0.5f, -0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f },   // 手前右下
+		{ -0.5f, -0.5f,  0.5f,  0.0f,  1.0f,  1.0f,  1.0f },   // 手前左下
+		{ -0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f },   // 奥左上
+		{  0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  1.0f,  1.0f },   // 奥右上
+		{  0.5f, -0.5f, -0.5f,  1.0f,  1.0f,  0.0f,  1.0f },   // 奥右下
+		{ -0.5f, -0.5f, -0.5f,  1.0f,  1.0f,  1.0f,  1.0f }    // 奥左下
 	};
 
 	// 頂点バッファを生成
@@ -393,8 +393,8 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 	D3D11_RASTERIZER_DESC rasterizerStateDesc = {
 		D3D11_FILL_SOLID,		// FillMode
 //		D3D11_FILL_WIREFRAME,	// FillMode (ワイヤーフレーム表示)
-//		D3D11_CULL_BACK,		// CullMode
-		D3D11_CULL_NONE,		// CullMode (カリングなし)
+		D3D11_CULL_BACK,		// CullMode
+//		D3D11_CULL_NONE,		// CullMode (カリングなし)
 		FALSE,					// FrontCounterClockwise
 		0,						// DepthBias
 		0.0f,					// DepthBiasClamp
@@ -423,7 +423,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 	D3D11_DEPTH_STENCIL_DESC depthStencilStateDesc = {
 		TRUE,								// DepthEnable
 		D3D11_DEPTH_WRITE_MASK_ALL,			// DepthWriteMask
-		D3D11_COMPARISON_LESS,				// DepthFunc
+		D3D11_COMPARISON_GREATER,			// DepthFunc
 		FALSE,								// StencilEnable
 		D3D11_DEFAULT_STENCIL_READ_MASK,	// StencilReadMask
 		D3D11_DEFAULT_STENCIL_WRITE_MASK,	// StencilWriteMask
@@ -485,12 +485,12 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 
 			D3DXMatrixIdentity( &world );
 
-			const D3DXVECTOR3 eye( 1.8f * 1.414214f * cosf( theta ), 1.8f, 1.8f * 1.414214f * sinf( theta ) );
+			const D3DXVECTOR3 eye( 1.8f * 1.414214f * -cosf( theta ), 1.8f, 1.8f * 1.414214f * sinf( theta ) );
 			const D3DXVECTOR3 at( 0.0f, 0.0f, 0.0f );
 			const D3DXVECTOR3 up( 0.0f, 1.0f, 0.0f );
-			D3DXMatrixLookAtLH( &view, &eye, &at, &up );
+			D3DXMatrixLookAtRH( &view, &eye, &at, &up );
 
-			D3DXMatrixPerspectiveFovLH( &projection, 3.141593f / 4.0f, 1280.0f / 720.0f, 1.0f, 10000.0f );
+			D3DXMatrixPerspectiveFovRH( &projection, 3.141593f / 4.0f, 1280.0f / 720.0f, 1.0f, 10000.0f );
 
 
 			// 頂点シェーダ用定数バッファへアクセス
@@ -514,7 +514,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 			pDeviceContext->ClearRenderTargetView( pRenderTargetView, clear );
 
 			// デプス・ステンシルビューをクリア
-			pDeviceContext->ClearDepthStencilView( pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0 );
+			pDeviceContext->ClearDepthStencilView( pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 0.0f, 0 );
 
 
 			// 描画
