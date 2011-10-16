@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "009_Dx11DepthStencilState",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "010_Dx11Metasequoia", "010_Dx11Metasequoia\Dx11Metasequoia_2008.vcproj", "{EBA468DB-024C-4053-970D-27DDA170CD0F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "011_Dx11MetasequoiaLambert", "011_Dx11MetasequoiaLambert\Dx11MetasequoiaLambert_2008.vcproj", "{7868CCA4-4CE7-4485-84FA-15FD64AB387F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -67,6 +69,10 @@ Global
 		{EBA468DB-024C-4053-970D-27DDA170CD0F}.Debug|Win32.Build.0 = Debug|Win32
 		{EBA468DB-024C-4053-970D-27DDA170CD0F}.Release|Win32.ActiveCfg = Release|Win32
 		{EBA468DB-024C-4053-970D-27DDA170CD0F}.Release|Win32.Build.0 = Release|Win32
+		{7868CCA4-4CE7-4485-84FA-15FD64AB387F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7868CCA4-4CE7-4485-84FA-15FD64AB387F}.Debug|Win32.Build.0 = Debug|Win32
+		{7868CCA4-4CE7-4485-84FA-15FD64AB387F}.Release|Win32.ActiveCfg = Release|Win32
+		{7868CCA4-4CE7-4485-84FA-15FD64AB387F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
