@@ -239,12 +239,13 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 
 
 	// Metasequoia モデル変換データ読み込み
+	// fread の引数 path/to/exported_data を、エクスポートしたモデルデータファイルに変更してください。
 	FILE *fp;
 	unsigned int vertices_count = 0, faces_count = 0;
 	float * vertices = NULL;
 	unsigned int * indices = NULL;
 
-	if ( ( fp = fopen( "exporter/vilentine_all_111016.model", "rb" ) ) == NULL )
+	if ( ( fp = fopen( "path/to/exported_data", "rb" ) ) == NULL )
 	{
 		MessageBox( NULL, _T( "失敗: fopen()" ), _T( "エラー" ), MB_OK | MB_ICONERROR );
 		return 0;
