@@ -376,13 +376,12 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 
 	// 入力エレメント記述子
 	D3D11_INPUT_ELEMENT_DESC verticesDesc[] = {
-		{ "IN_POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT,    0, 0,               D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "IN_COLOR",    0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, sizeof(float)*3, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+		{ "IN_POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }
 	};
 
 	// 入力レイアウトを生成
 	ID3D11InputLayout * pInputLayout = NULL;
-	hr = pDevice->CreateInputLayout( verticesDesc, 2, g_vs_metasequoia, sizeof( g_vs_metasequoia ), &pInputLayout );
+	hr = pDevice->CreateInputLayout( verticesDesc, 1, g_vs_metasequoia, sizeof( g_vs_metasequoia ), &pInputLayout );
 	if ( FAILED( hr ) )
 	{
 		MessageBox( NULL, _T( "失敗: ID3D11Device::CreateInputLayout()" ), _T( "エラー" ), MB_OK | MB_ICONERROR );
@@ -401,7 +400,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 //		D3D11_FILL_WIREFRAME,	// FillMode (ワイヤーフレーム表示)
 		D3D11_CULL_BACK,		// CullMode
 //		D3D11_CULL_NONE,		// CullMode (カリングなし)
-		FALSE,					// FrontCounterClockwise
+		TRUE,					// FrontCounterClockwise
 		0,						// DepthBias
 		0.0f,					// DepthBiasClamp
 		0.0f,					// SlopeScaledDepthBias
@@ -491,7 +490,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 
 			D3DXMatrixIdentity( &world );
 
-			const D3DXVECTOR3 eye( 500.0f * 1.414214f * -cosf( theta ), 100.0f, 500.0f * 1.414214f * sinf( theta ) );
+			const D3DXVECTOR3 eye( 500.0f * 1.414214f * cosf( theta ), 100.0f, 500.0f * 1.414214f * sinf( theta ) );
 			const D3DXVECTOR3 at( 0.0f, -50.0f, 0.0f );
 			const D3DXVECTOR3 up( 0.0f, 1.0f, 0.0f );
 			D3DXMatrixLookAtRH( &view, &eye, &at, &up );
