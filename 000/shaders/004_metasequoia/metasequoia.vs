@@ -29,7 +29,7 @@ VS_OUT vs_main( VS_IN VSin )
 
 	float4x4 wvp = mul( mul( projection, view ), world );
 
-	VSout.position = mul( float4( VSin.position, 1.0f ), transpose( wvp ) );
+	VSout.position = mul( wvp, float4( VSin.position, 1.0f ) );
 	VSout.color    = float4( 0.8f, 0.8f, 0.8f, 1.0f );
 //	VSout.color    = float4( 0.0f, 1.0f, 0.0f, 1.0f );   // ワイヤーフレーム用
 
