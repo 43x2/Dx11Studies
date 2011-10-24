@@ -244,12 +244,14 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 
 
 	// インデックスデータ
-	unsigned int indices[] = { 0, 1, 2, 0, 2, 3,    // 手前
-	                           4, 0, 3, 4, 3, 7,    // 左
-	                           1, 5, 6, 1, 6, 2,    // 右
-	                           0, 4, 5, 0, 5, 1,    // 上
-	                           2, 6, 7, 2, 7, 3,    // 下
-	                           5, 4, 7, 5, 7, 6 };  // 裏
+	unsigned int indices[] = {
+		0, 1, 2, 0, 2, 3,   // 手前
+		4, 0, 3, 4, 3, 7,   // 左
+		1, 5, 6, 1, 6, 2,   // 右
+		0, 4, 5, 0, 5, 1,   // 上
+		2, 6, 7, 2, 7, 3,   // 下
+		5, 4, 7, 5, 7, 6    // 裏
+	};
 
 	// インデックスバッファを生成
 	D3D11_BUFFER_DESC indexBufferDesc = {
