@@ -311,18 +311,17 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 	float triaxialVertices[ 12 ][ 7 ] = {
 	//    Xaxis  Yaxis  Zaxis  赤     緑     青     Alpha
 		{  0.0f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f },   // x 軸正方向
-		{  2.0f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f },
-		{  2.0f, -1.0f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f },   // x 軸負方向
-//		{  0.0f,  0.0f,  0.0f,  0.2f,  0.0f,  0.0f,  1.0f },   // x 軸負方向
-		{ -2.0f,  0.0f,  0.0f,  0.2f,  0.0f,  0.0f,  1.0f },
+		{  3.0f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f },
+		{  0.0f,  0.0f,  0.0f,  0.2f,  0.0f,  0.0f,  1.0f },   // x 軸負方向
+		{ -3.0f,  0.0f,  0.0f,  0.2f,  0.0f,  0.0f,  1.0f },
 		{  0.0f,  0.0f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f },   // y 軸正方向
-		{  0.0f,  2.0f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f },
+		{  0.0f,  3.0f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f },
 		{  0.0f,  0.0f,  0.0f,  0.0f,  0.2f,  0.0f,  1.0f },   // y 軸負方向
-		{  0.0f, -2.0f,  0.0f,  0.0f,  0.2f,  0.0f,  1.0f },
+		{  0.0f, -3.0f,  0.0f,  0.0f,  0.2f,  0.0f,  1.0f },
 		{  0.0f,  0.0f,  0.0f,  0.0f,  0.0f,  1.0f,  1.0f },   // z 軸正方向
-		{  0.0f,  0.0f,  2.0f,  0.0f,  0.0f,  1.0f,  1.0f },
+		{  0.0f,  0.0f,  3.0f,  0.0f,  0.0f,  1.0f,  1.0f },
 		{  0.0f,  0.0f,  0.0f,  0.0f,  0.0f,  0.2f,  1.0f },   // z 軸負方向
-		{  0.0f,  0.0f, -2.0f,  0.0f,  0.0f,  0.2f,  1.0f }
+		{  0.0f,  0.0f, -3.0f,  0.0f,  0.0f,  0.2f,  1.0f }
 	};
 
 	// 3 軸線の頂点バッファを生成
@@ -451,11 +450,11 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 	dtprintf( _T( "ID3D11DeviceContext::RSSetState: ok\n" ) );
 
 
-	// 立方体のデプス・ステンシルステートを生成
-	D3D11_DEPTH_STENCIL_DESC cubeDepthStencilStateDesc = {
+	// デプス・ステンシルステートを生成
+	D3D11_DEPTH_STENCIL_DESC depthStencilStateDesc = {
 		TRUE,								// DepthEnable
 		D3D11_DEPTH_WRITE_MASK_ALL,			// DepthWriteMask
-		D3D11_COMPARISON_LESS,			// DepthFunc
+		D3D11_COMPARISON_LESS,				// DepthFunc
 		FALSE,								// StencilEnable
 		D3D11_DEFAULT_STENCIL_READ_MASK,	// StencilReadMask
 		D3D11_DEFAULT_STENCIL_WRITE_MASK,	// StencilWriteMask
@@ -473,48 +472,18 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 		}
 	};
 
-	ID3D11DepthStencilState * pCubeDepthStencilState = NULL;
-	hr = pDevice->CreateDepthStencilState( &cubeDepthStencilStateDesc, &pCubeDepthStencilState );
+	ID3D11DepthStencilState * pDepthStencilState = NULL;
+	hr = pDevice->CreateDepthStencilState( &depthStencilStateDesc, &pDepthStencilState );
 	if ( FAILED( hr ) )
 	{
 		MessageBox( NULL, _T( "失敗: ID3D11Device::CreateDepthStencilState()" ), _T( "エラー" ), MB_OK | MB_ICONERROR );
 		return 0;
 	}
-	dtprintf( _T( "ID3D11Device::CreateDepthStencilState: ok (pCubeDepthStencilState: 0x%p)\n" ), pCubeDepthStencilState );
+	dtprintf( _T( "ID3D11Device::CreateDepthStencilState: ok (pDepthStencilState: 0x%p)\n" ), pDepthStencilState );
 
-
-/*
-	// 3 軸線のデプス・ステンシルステートを生成
-	D3D11_DEPTH_STENCIL_DESC triaxialDepthStencilStateDesc = {
-		TRUE,								// DepthEnable
-		D3D11_DEPTH_WRITE_MASK_ALL,			// DepthWriteMask
-		D3D11_COMPARISON_GREATER,			// DepthFunc
-		FALSE,								// StencilEnable
-		D3D11_DEFAULT_STENCIL_READ_MASK,	// StencilReadMask
-		D3D11_DEFAULT_STENCIL_WRITE_MASK,	// StencilWriteMask
-		{
-			D3D11_STENCIL_OP_KEEP,			// FrontFace.StencilFailOp
-			D3D11_STENCIL_OP_KEEP,			// FrontFace.StencilDepthFailOp
-			D3D11_STENCIL_OP_KEEP,			// FrontFace.StencilPassOp
-			D3D11_COMPARISON_ALWAYS			// FrontFace.StencilFunc
-		},
-		{
-			D3D11_STENCIL_OP_KEEP,			// BackFace.StencilFailOp
-			D3D11_STENCIL_OP_KEEP,			// BackFace.StencilDepthFailOp
-			D3D11_STENCIL_OP_KEEP,			// BackFace.StencilPassOp
-			D3D11_COMPARISON_ALWAYS			// BackFace.StencilFunc
-		}
-	};
-
-	ID3D11DepthStencilState * pTriaxialDepthStencilState = NULL;
-	hr = pDevice->CreateDepthStencilState( &triaxialDepthStencilStateDesc, &pTriaxialDepthStencilState );
-	if ( FAILED( hr ) )
-	{
-		MessageBox( NULL, _T( "失敗: ID3D11Device::CreateDepthStencilState()" ), _T( "エラー" ), MB_OK | MB_ICONERROR );
-		return 0;
-	}
-	dtprintf( _T( "ID3D11Device::CreateDepthStencilState: ok (pTriaxialDepthStencilState: 0x%p)\n" ), pTriaxialDepthStencilState );
-*/
+	// デプス・ステンシルステートをバインド
+	pDeviceContext->OMSetDepthStencilState( pDepthStencilState, 0 );
+	dtprintf( _T( "ID3D11DeviceContext::OMSetDepthStencilState: ok\n" ) );
 
 
 
@@ -539,7 +508,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 
 			static unsigned int count = 0;
 
-			float theta = ( count++ / 300.0f ) * ( 3.141593f / 2.0f );
+			float theta = ( count++ / 200.0f ) * ( 3.141593f / 2.0f );
 
 
 			// World-View-Projection 行列をそれぞれ生成
@@ -579,40 +548,30 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 			pDeviceContext->ClearDepthStencilView( pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0 );
 
 
-/*
 			///// 3 軸線の描画
 
 			// 頂点バッファをバインド
+			UINT strides[] = { sizeof( float ) * 7 };
+			UINT offsets[] = { 0 };
 			pDeviceContext->IASetVertexBuffers( 0, 1, &pTriaxialVertexBuffer, strides, offsets );
 
 			// プリミティブタイプを設定
-			pDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-//			pDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_LINELIST );
-
-			// デプス・ステンシルステートをバインド
-			pDeviceContext->OMSetDepthStencilState( pTriaxialDepthStencilState, 0 );
+			pDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_LINELIST );
 
 			// 描画
-//			pDeviceContext->Draw( 3, 0 );
-//			pDeviceContext->Draw( 12, 0 );
-*/
+			pDeviceContext->Draw( 12, 0 );
 
 
 			///// 立方体の描画
 
 			// 頂点バッファをバインド
-			UINT strides[] = { sizeof( float ) * 7 };
-			UINT offsets[] = { 0 };
 			pDeviceContext->IASetVertexBuffers( 0, 1, &pCubeVertexBuffer, strides, offsets );
 
 			// プリミティブタイプを設定
 			pDeviceContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 
-			// デプス・ステンシルステートをバインド
-			pDeviceContext->OMSetDepthStencilState( pCubeDepthStencilState, 0 );
-
 			// 描画
-			pDeviceContext->DrawIndexed( 12, 0, 0 );
+			pDeviceContext->DrawIndexed( 36, 0, 0 );
 
 
 			pSwapChain->Present( 1, 0 );
@@ -629,8 +588,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 	pDeviceContext->PSSetShader( NULL, NULL, 0 );
 
 	// デバイス・リソース解放
-//	COM_SAFE_RELEASE( pTriaxialDepthStencilState );
-	COM_SAFE_RELEASE( pCubeDepthStencilState );
+	COM_SAFE_RELEASE( pDepthStencilState );
 	COM_SAFE_RELEASE( pRasterizerState );
 	COM_SAFE_RELEASE( pInputLayout );
 	COM_SAFE_RELEASE( pPixelShader );
