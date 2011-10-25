@@ -423,7 +423,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 	D3D11_DEPTH_STENCIL_DESC depthStencilStateDesc = {
 		TRUE,								// DepthEnable
 		D3D11_DEPTH_WRITE_MASK_ALL,			// DepthWriteMask
-		D3D11_COMPARISON_GREATER,			// DepthFunc
+		D3D11_COMPARISON_LESS,				// DepthFunc
 		FALSE,								// StencilEnable
 		D3D11_DEFAULT_STENCIL_READ_MASK,	// StencilReadMask
 		D3D11_DEFAULT_STENCIL_WRITE_MASK,	// StencilWriteMask
@@ -514,7 +514,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpC
 			pDeviceContext->ClearRenderTargetView( pRenderTargetView, clear );
 
 			// デプス・ステンシルビューをクリア
-			pDeviceContext->ClearDepthStencilView( pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 0.0f, 0 );
+			pDeviceContext->ClearDepthStencilView( pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0 );
 
 
 			// 描画
