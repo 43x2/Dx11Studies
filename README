@@ -2,7 +2,11 @@
 DirectX11 あるいはそれに関連する Windows API 等の勉強に使用しています。
 
 基本的に自分以外の方に触れていただくような設計にはなっていませんが、
-もしこれが皆さんの DirectX への理解の一助になるのであれば幸いなことです。
+もしこれが皆さんの DirectX11 や、その他何らかの一助になるのであれば幸いなことです。
+
+またこのリポジトリは、課題追跡システム Lighthouse のプロジェクトと連動しています。
+http://2dtrax.lighthouseapp.com/projects/84600-dx11studies/
+
 
 
 This repository is for @43x2 's studies of DirectX11 and Windows APIs.
