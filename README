@@ -1,1 +1,10 @@
-﻿とりあえずテスト
+﻿このリポジトリは、おーた('A`) (@43x2) が、
+DirectX11 あるいはそれに関連する Windows API 等の勉強に使用しています。
+
+基本的に自分以外の方に触れていただくような設計にはなっていませんが、
+もしこれが皆さんの DirectX への理解の一助になるのであれば幸いなことです。
+
+
+This repository is for @43x2 's studies of DirectX11 and Windows APIs.
+The source codes are NOT designed for people except me, and comments are written in Japanese,
+but I'm so glad if they are of some help to you.
