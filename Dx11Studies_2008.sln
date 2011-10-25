@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+# Visual C++ Express 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "001_dtprintf", "001_dtprintf\dtprintf_2008.vcproj", "{64504A37-45FF-4AB5-9758-BCE23D52E7DD}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "002_Window", "002_Window\Window_2008.vcproj", "{1CD01D0E-B7D1-4154-9982-86F9E914D2A4}"
@@ -22,6 +22,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "010_Dx11TriaxialLines", "010_Dx11TriaxialLines\Dx11TriaxialLines.vcproj", "{2B8AEB7D-8C66-4898-BDB9-4633EAE86A13}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "011_Dx11MetasequoiaNormal", "011_Dx11MetasequoiaNormal\Dx11MetasequoiaNormal.vcproj", "{479C78FD-F26F-47B8-A128-DA4B6415CFF4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "012_Dx11MetasequoiaLambert", "012_Dx11MetasequoiaLambert\Dx11MetasequoiaLambert.vcproj", "{AB158B6A-C5D0-4F9B-96F6-020F6605625F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,10 @@ Global
 		{479C78FD-F26F-47B8-A128-DA4B6415CFF4}.Debug|Win32.Build.0 = Debug|Win32
 		{479C78FD-F26F-47B8-A128-DA4B6415CFF4}.Release|Win32.ActiveCfg = Release|Win32
 		{479C78FD-F26F-47B8-A128-DA4B6415CFF4}.Release|Win32.Build.0 = Release|Win32
+		{AB158B6A-C5D0-4F9B-96F6-020F6605625F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AB158B6A-C5D0-4F9B-96F6-020F6605625F}.Debug|Win32.Build.0 = Debug|Win32
+		{AB158B6A-C5D0-4F9B-96F6-020F6605625F}.Release|Win32.ActiveCfg = Release|Win32
+		{AB158B6A-C5D0-4F9B-96F6-020F6605625F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
